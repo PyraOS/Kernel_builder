@@ -15,14 +15,14 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Install dependencies
-    run : |
-      sudo apt install build-essential git gcc-arm-linux-gnueabihf
+      run: |
+        sudo apt install build-essential git gcc-arm-linux-gnueabihf
 
     - name: Pull Pyra-Kernel Repo
-    run : | 
-      git pull https://dev.pyra-handheld.com/packages/pyra-kernel.git/ 
+      run: | 
+        git pull https://dev.pyra-handheld.com/packages/pyra-kernel.git/ 
     
     - name: Build Kernel image
-    run : |
-      cd pyra-kernel
-      make -j$(num_cpus) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bzImage modules dtbs
+      run: |
+        cd pyra-kernel
+        make -j$(nproc) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bzImage modules dtbs
